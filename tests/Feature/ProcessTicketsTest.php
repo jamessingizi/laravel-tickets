@@ -22,13 +22,13 @@ class ProcessTicketsTest extends TestCase
         // Assert that the first 5 tickets are processed
         foreach ($tickets->take(5) as $ticket) {
             $ticket->refresh();
-            $this->assertTrue($ticket->status === 1);
+            $this->assertTrue($ticket->status);
         }
 
         // Assert that the remaining 2 tickets are not processed
         foreach ($tickets->skip(5) as $ticket) {
             $ticket->refresh();
-            $this->assertFalse($ticket->status === false);
+            $this->assertFalse($ticket->status);
         }
     }
 }
