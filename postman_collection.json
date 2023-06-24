@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "414220f7-9ee4-4e50-9a92-68b7cf39bd32",
+		"name": "Pentest Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2945397"
+	},
+	"item": [
+		{
+			"name": "Get Tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/tickets/open",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Closed Tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/tickets/closed",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"closed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/users/jakubowski.emelia@hotmail.com/tickets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"jakubowski.emelia@hotmail.com",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/stats",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
