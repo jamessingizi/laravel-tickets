@@ -2,38 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClosedTicketsRequest;
+use App\Http\Requests\OpenTicketsRequest;
+use App\Http\Requests\UserTicketsRequest;
+use App\Http\Resources\TicketResource;
 use App\Models\Ticket;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
-    public function openTickets(Request $request): JsonResponse
+    public function openTickets(OpenTicketsRequest $request): AnonymousResourceCollection
     {
         $perPage = $request->query('per_page', 10);
         $tickets = Ticket::where('status', 0)
             ->orderBy('created_at')
             ->paginate($perPage);
-        return response()->json($tickets, 200);
+        return TicketResource::collection($tickets);
     }
 
-    public function closedTickets(Request $request): JsonResponse
+    public function closedTickets(ClosedTicketsRequest $request): AnonymousResourceCollection
     {
         $perPage = $request->query('per_page', 10);
         $tickets = Ticket::where('status', 1)
             ->orderBy('created_at')
             ->paginate($perPage);
-        return response()->json($tickets, 200);
+        return TicketResource::collection($tickets);
     }
 
-    public function userTickets(Request $request, $email): JsonResponse
+    public function userTickets(UserTicketsRequest $request, $email): AnonymousResourceCollection
     {
         $perPage = $request->query('per_page', 10);
         $tickets = Ticket::where('email', $email)
             ->orderBy('created_at', 'desc')
             ->paginate($perPage);
-        return response()->json($tickets, 200);
+        return TicketResource::collection($tickets);
     }
 
     public function stats(): JsonResponse
