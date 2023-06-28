@@ -4,13 +4,16 @@ namespace Tests\Feature;
 
 use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserTicketsEndpointTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_user_tickets_endpoint(): void
+
+    /**
+     * @test
+     */
+    public function user_tickets_endpoint(): void
     {
         $userEmail = 'user@example.com';
         $name = 'John Doe';
@@ -59,7 +62,10 @@ class UserTicketsEndpointTest extends TestCase
         $this->assertCount(10, $response->json('data'));
     }
 
-    public function test_user_cannot_use_invalid_email(): void
+    /**
+     * @test
+     */
+    public function user_cannot_use_invalid_email(): void
     {
         $userEmail = 'invalid-email';
         Ticket::factory()->count(10)->create();
@@ -77,10 +83,13 @@ class UserTicketsEndpointTest extends TestCase
         ]);
     }
 
-    public function test_user_cannot_use_invalid_per_page_param(): void
+    /**
+     * @test
+     */
+    public function user_cannot_use_invalid_per_page_param(): void
     {
         $per_page = '200';
-        $userEmail = "user@email.com";
+        $userEmail = 'user@email.com';
         Ticket::factory()->count(10)->create();
         $response = $this->getJson('/api/users/' . $userEmail . '/tickets?per_page=' . $per_page);
         $response->assertStatus(200);

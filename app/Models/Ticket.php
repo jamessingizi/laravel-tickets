@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property string email
  * @property bool status
+ *
  * @method static first()
  * @method static where(string $string, false $false)
  * @method static count()

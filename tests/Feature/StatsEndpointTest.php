@@ -4,14 +4,16 @@ namespace Tests\Feature;
 
 use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class StatsEndpointTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_stats_endpoint(): void
+    /**
+     * @test
+     */
+    public function stats_endpoint(): void
     {
         Ticket::factory()->count(5)->create(['status' => true]);
         Ticket::factory()->count(3)->create(['status' => false]);

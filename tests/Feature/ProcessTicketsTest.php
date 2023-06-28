@@ -9,7 +9,11 @@ use Tests\TestCase;
 class ProcessTicketsTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_ticket_processing(): void
+
+    /**
+     * @test
+     */
+    public function ticket_processing(): void
     {
         // Create 7 tickets with status false and different created_at timestamps
         $tickets = Ticket::factory()->count(7)->create(['status' => 0]);

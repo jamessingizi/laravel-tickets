@@ -10,7 +10,10 @@ class GenerateTicketTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_ticket_generation(): void
+    /**
+     * @test
+     */
+    public function ticket_generation(): void
     {
         $this->artisan('ticket:generate')
             ->expectsOutput('Ticket generated successfully!')

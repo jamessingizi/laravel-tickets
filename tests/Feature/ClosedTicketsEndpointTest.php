@@ -9,7 +9,11 @@ use Tests\TestCase;
 class ClosedTicketsEndpointTest extends TestCase
 {
     use refreshDatabase;
-    public function test_closed_tickets_endpoint(): void
+
+    /**
+     * @test
+     */
+    public function closed_tickets_endpoint(): void
     {
         $userEmail = 'user@example.com';
         $name = 'John Doe';
@@ -60,7 +64,10 @@ class ClosedTicketsEndpointTest extends TestCase
         $this->assertCount(10, $response->json('data'));
     }
 
-    public function test_user_cannot_use_invalid_per_page_param(): void
+    /**
+     * @test
+     */
+    public function user_cannot_use_invalid_per_page_param(): void
     {
         $per_page = 'ss';
         Ticket::factory()->count(10)->create();

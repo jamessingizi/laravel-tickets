@@ -7,14 +7,13 @@ use Illuminate\Console\Command;
 
 class GenerateTicket extends Command
 {
-
     protected $signature = 'ticket:generate';
     protected $description = 'Generate a ticker with user data';
 
     public function handle(): void
     {
 
-        $ticket = new Ticket();
+        $ticket = new Ticket;
         $ticket->subject = fake()->sentence;
         $ticket->content = fake()->paragraph;
         $ticket->name = fake()->name;

@@ -9,7 +9,11 @@ use Tests\TestCase;
 class OpenTicketsEndpointTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_open_tickets(): void
+
+    /**
+     * @test
+     */
+    public function open_tickets(): void
     {
         $userEmail = 'user@example.com';
         $name = 'John Doe';
@@ -60,10 +64,13 @@ class OpenTicketsEndpointTest extends TestCase
         $this->assertCount(10, $response->json('data'));
     }
 
-    public function test_user_cannot_use_invalid_per_page_param(): void
+    /**
+     * @test
+     */
+    public function user_cannot_use_invalid_per_page_param(): void
     {
         $per_page = '200';
-        $userEmail = "user@email.com";
+        $userEmail = 'user@email.com';
         Ticket::factory()->count(10)->create();
         $response = $this->getJson('/api/tickets/open?per_page=' . $per_page);
         $response->assertStatus(200);
@@ -78,5 +85,4 @@ class OpenTicketsEndpointTest extends TestCase
             ],
         ]);
     }
-
 }

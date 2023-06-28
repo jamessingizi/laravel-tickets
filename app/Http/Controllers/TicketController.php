@@ -19,6 +19,7 @@ class TicketController extends Controller
         $tickets = Ticket::where('status', 0)
             ->orderBy('created_at')
             ->paginate($perPage);
+
         return TicketResource::collection($tickets);
     }
 
@@ -28,6 +29,7 @@ class TicketController extends Controller
         $tickets = Ticket::where('status', 1)
             ->orderBy('created_at')
             ->paginate($perPage);
+
         return TicketResource::collection($tickets);
     }
 
@@ -37,6 +39,7 @@ class TicketController extends Controller
         $tickets = Ticket::where('email', $email)
             ->orderBy('created_at', 'desc')
             ->paginate($perPage);
+
         return TicketResource::collection($tickets);
     }
 
@@ -61,5 +64,4 @@ class TicketController extends Controller
             'last_processed_ticket_time' => $lastProcessedTicketTime,
         ], 200);
     }
-
 }

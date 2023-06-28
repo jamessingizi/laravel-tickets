@@ -24,12 +24,11 @@ class UserTicketsRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
+            'success' => false,
 
-            'success'   => false,
+            'message' => 'Validation errors',
 
-            'message'   => 'Validation errors',
-
-            'data'      => $validator->errors()
+            'data' => $validator->errors(),
 
         ]));
     }
@@ -39,6 +38,7 @@ class UserTicketsRequest extends FormRequest
         $data = $this->all();
         $data['email'] = $this->route('email');
         $this->getInputSource()->replace($data);
+
         return parent::getValidatorInstance();
     }
 }
